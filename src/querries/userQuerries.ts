@@ -4,5 +4,9 @@ export const getUserByEmailQuery = `
 `;
 export const createUserQuery = `
   INSERT INTO User(name,contact,email,password,status,role)
-  VALUES(?,?,?,?,"false","user")
+  VALUES(?,?,?,?,'false','user')
+`;
+export const getRegularUsersQuery = `
+  SELECT id,name,email,contact,status FROM User
+  WHERE role='user'
 `;

@@ -1,5 +1,5 @@
 import { MySQL } from './../services/mysql.js';
-import { CreateUserData } from './signup.interfaces.js';
+import { CreateUserData, RegularUserData } from './signup.interfaces.js';
 import { SignupService } from './signup.service.js';
 export class SignupManager {
   service: SignupService;
@@ -13,5 +13,9 @@ export class SignupManager {
       throw new Error('user already exists');
     }
     await this.service.createUser(mysqlClient, userData);
+  }
+
+  public async getRegularUsers(mysqlClient: MySQL): Promise<RegularUserData[]> {
+    return this.service.getRegularUsers(mysqlClient);
   }
 }

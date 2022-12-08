@@ -30,7 +30,7 @@ export class MySQL {
     return this.connection.end.bind(this.connection)();
   }
 
-  async query(query: string, args: any) {
+  async query(query: string, args?: any) {
     console.log('\nquery', query);
     console.log('args', args);
     console.log('\n');

@@ -1,6 +1,6 @@
 import { MySQL } from './../services/mysql.js';
-import { getUserByEmailQuery, createUserQuery } from '../querries/userQuerries.js';
-import { CreateUserData } from './signup.interfaces.js';
+import { getUserByEmailQuery, createUserQuery, getRegularUsersQuery } from '../querries/userQuerries.js';
+import { CreateUserData, RegularUserData } from './signup.interfaces.js';
 export class SignupService {
   async getUserByEmail(mysqlClient: MySQL, email: string): Promise<CreateUserData[]> {
     try {
@@ -18,6 +18,16 @@ export class SignupService {
     } catch (e) {
       console.log('[createUser] error: ', e);
       throw new Error(`[createUser] error: ${e}`);
+    }
+  }
+
+  async getRegularUsers(mysqlClient: MySQL): Promise<RegularUserData[]> {
+    try {
+      const response = await mysqlClient.query(getRegularUsersQuery);
+      return response[0] as unknown as Promise<RegularUserData[]>;
+    } catch (e) {
+      console.log('[getRegularUsers] error: ', e);
+      throw new Error(`[getRegularUsers] error: ${e}`);
     }
   }
 }
