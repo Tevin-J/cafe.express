@@ -11,3 +11,7 @@ export interface RegularUserData {
   email: string;
   status: string;
 }
+export interface UpdateUserPayload {
+  id: number;
+  status: string;
+}

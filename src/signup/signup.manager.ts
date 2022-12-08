@@ -1,5 +1,5 @@
 import { MySQL } from './../services/mysql.js';
-import { CreateUserData, RegularUserData } from './signup.interfaces.js';
+import { CreateUserData, RegularUserData, UpdateUserPayload } from './signup.interfaces.js';
 import { SignupService } from './signup.service.js';
 export class SignupManager {
   service: SignupService;
@@ -17,5 +17,9 @@ export class SignupManager {
 
   public async getRegularUsers(mysqlClient: MySQL): Promise<RegularUserData[]> {
     return this.service.getRegularUsers(mysqlClient);
+  }
+
+  public async updateUser(mysqlClient: MySQL, userData: UpdateUserPayload): Promise<void> {
+    await this.service.updateUser(mysqlClient, userData);
   }
 }

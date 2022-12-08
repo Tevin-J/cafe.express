@@ -10,3 +10,7 @@ export const getRegularUsersQuery = `
   SELECT id,name,email,contact,status FROM User
   WHERE role='user'
 `;
+export const updateUserQuery = `
+  UPDATE User SET status=?
+  WHERE id=?
+`;
